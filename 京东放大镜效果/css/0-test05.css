@@ -1,0 +1,9 @@
+
+#reg_img{border:1px solid #999; padding:0;float:left; position:relative; overflow:hidden;}
+#reg_img img{border:none;}
+#reg_img_cover{ height:80px; width:80px; position:absolute; background:#FC0; border:1px solid #F30; cursor:all-scroll; opacity:0.6; filter:alpha(opacity=60);}
+
+#reg_img_show{ display:none; border:1px solid #999; padding:5px; position:absolute; left:212px; height:400px; width:400px; overflow:hidden; box-shadow:2px 2px 5px #666;}
+#reg_img_show img{position:absolute;}
+
+p{clear:both;}

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="css/0-test05.css" />
+<title>京东放大镜</title>
+<script>
+window.onload = function(){
+	var reg_img = document.getElementById("reg_img");
+	var reg_img_cover = document.getElementById("reg_img_cover");
+	var reg_img_show = document.getElementById("reg_img_show");
+	var reg_img_big = reg_img_show.getElementsByTagName("img")[0];
+	
+	reg_img.onmouseover = function(){    //如果使用mouseover,会触发IE冒泡
+		reg_img_cover.style.display = "block";
+		reg_img_show.style.display = "block";
+	}
+	
+	reg_img.onmouseout = function(){
+		reg_img_cover.style.display = "none";
+		reg_img_show.style.display = "none";
+	}
+	
+	reg_img.onmousemove = function(e){
+		var e = e||window.event;
+		/*定位鼠标，div中间*/
+		var x= e.clientX - reg_img.offsetLeft - (reg_img_cover.offsetWidth)/2;
+		var y = e.clientY - reg_img.offsetTop - (reg_img_cover.offsetHeight)/2;
+		/*半透明cover层横坐标判断*/
+		if(x < 0){
+			x = 0;
+		}else if(x > (reg_img.offsetWidth - reg_img_cover.offsetWidth)){
+			x = reg_img.offsetWidth - 84;
+		}
+		reg_img_cover.style.left = x +"px";
+		/*半透明cover层纵坐标判断*/
+		if(y < 0){
+			y = 0;
+		}else if(y > (reg_img.offsetHeight - reg_img_cover.offsetHeight)){
+			y = reg_img.offsetHeight - 84;
+		}
+		reg_img_cover.style.top = y +"px";
+		/*大图定位*/
+		var per_x = x/(reg_img.offsetWidth - reg_img_cover.offsetWidth);
+		var per_y = y/(reg_img.offsetHeight - reg_img_cover.offsetHeight);
+		reg_img_big.style.left = (reg_img_show.offsetWidth - reg_img_big.offsetWidth)*per_x + "px";
+		reg_img_big.style.top = (reg_img_show.offsetHeight - reg_img_big.offsetHeight)*per_y + "px";
+	}
+}
+</script>
+</head>
+
+<body>
+
+<div id="main">
+	<div id="reg_img">
+    	<img src="images/11111.png" width="200" height="200"/>
+        <div id="reg_img_cover"></div>
+    </div>
+    <div id="reg_img_show">
+    	<img src="images/11111.png" />
+    </div>
+    
+    <p>均可兼容</p>
+</div>
+
+</body>
+</html>
